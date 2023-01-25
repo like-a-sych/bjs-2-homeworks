@@ -12,3 +12,22 @@ function solveEquation(a, b, c) {
 	}
 	return arr; // array
 }
+
+function calculateTotalMortgage(percent, contribution, amount, countMonths) {
+	let totalAmount;
+	let args = [percent, contribution, amount, countMonths];
+	for (let i = 0; i < args.length; i++) {
+		if (!(!isNaN(parseFloat(args[i])) && isFinite(args[i]))) {
+			totalAmount = false;
+			return totalAmount;
+		}
+	}
+	if (!(totalAmount == false)) {
+		let S = amount - contribution;
+		let n = countMonths;
+		let P = percent;
+		let monthlyPayment = S * ((P / 12 / 100) + ((P / 12 / 100) / (((1 + (P / 12 / 100)) ** n) - 1)));
+		totalAmount = Number((monthlyPayment * n).toFixed(2));
+		return totalAmount;
+	}
+}
