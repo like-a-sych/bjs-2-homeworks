@@ -17,9 +17,15 @@ Student.prototype.addMarks = function (...marksToAdd) {
 
 
 Student.prototype.getAverage = function () {
-	if (this.marks.length > 0) {
-		let summ = this.marks.reduce((sum, elem) => sum + elem);
-		return summ / (this.marks.length)
+	console.log(this.marks)
+	if ((!(this.marks === undefined))) {
+		if (this.marks.length > 0) {
+			console.log(this.marks)
+			let summ = this.marks.reduce((sum, elem) => sum + elem);
+			return summ / (this.marks.length)
+		} else {
+			return 0
+		}
 	} else {
 		return 0
 	}
