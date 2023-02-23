@@ -9,7 +9,6 @@ class AlarmClock {
 		}
 		if (this.alarmCollection.find(element => element.time == time)) {
 			console.warn('Уже присутствует звонок на это же время')
-			return false;
 		}
 		const canCall = true;
 		this.alarmCollection.push({
@@ -29,13 +28,16 @@ class AlarmClock {
 		return `${hours}:${minutes}`;
 	}
 	start() {
-		if (this.intervalId !== null) {
+		if (this.intervalId === null) {
+			let currentTime = this.getCurrentFormattedTime();
 			this.intervalId = setInterval(() => this.alarmCollection.forEach(element => {
-				if (element.time == time && element.canCall == true) {
+				if (element.time == currentTime && element.canCall == true) {
 					element.canCall = false;
-					element.callback;
+					element.callback();
 				}
 			}), 1000)
+		} else {
+			return false
 		}
 	}
 
